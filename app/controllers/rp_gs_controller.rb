@@ -1,2 +1,0 @@
-class RpGsController < ApplicationController
-end

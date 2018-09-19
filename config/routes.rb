@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   root 'home#index'
-  get 'home/index'
+  get '/', to: 'home#index'
+
+  get '/login', to: 'sessions#login'
+  get '/logout', to: 'sessions#logout'
+  get '/register', to: 'users#new'
+  get '/create', to: 'rpgs#create'
+  get '/delete', to: 'rpgs#delete'
+
 
 
   resources :users
