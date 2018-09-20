@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#login'
   get '/logout', to: 'sessions#logout'
   get '/register', to: 'users#new'
+  post '/register',  to: 'users#create'
   get '/create', to: 'rpgs#create'
   get '/delete', to: 'rpgs#delete'
 
