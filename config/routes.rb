@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   root 'home#index'
   get '/', to: 'home#index'
 
-  get '/login', to: 'sessions#login'
-  get '/logout', to: 'sessions#logout'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
   get '/register', to: 'users#new'
   post '/register',  to: 'users#create'
   get '/create', to: 'rpgs#create'

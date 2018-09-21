@@ -1,14 +1,23 @@
 class SessionsController < ApplicationController
-    def login
+    def new
         
     end
 
-    def logout
-
+    def create
+        user = User.find_by(username: params[:session][:username].downcase)
+        if user && user.authenticate(params[:session][:password])
+            log_in user
+            redirect_to "/"
+        else
+            flash.now[:danger] = 'Invalid username/password combination'
+            render 'new'
+        end
     end
 
-    def register
-        
+    def destroy
+        log_out
+        redirect_to root_url
+        flash[:success] = 'You have successfully logged out'
     end
 
 end
