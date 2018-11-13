@@ -1,4 +1,4 @@
-class RPGsController < ApplicationController
+class GamesController < ApplicationController
 
     def create
     end

@@ -7,13 +7,13 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
   get '/register', to: 'users#new'
   post '/register',  to: 'users#create'
-  get '/create', to: 'rpgs#create'
-  get '/delete', to: 'rpgs#delete'
+  get '/create', to: 'games#create'
+  get '/delete', to: 'games#delete'
 
 
 
   resources :users
-  resources :rpgs
+  resources :games
   resources :meetings
 
   

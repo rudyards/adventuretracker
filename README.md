@@ -1,2 +1,2 @@
-test username/passoword: "thetester" "thetester"
+test username/passoword: "tester" "tester"
 Run: bundle exec rails s
