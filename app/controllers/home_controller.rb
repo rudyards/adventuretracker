@@ -1,3 +1,4 @@
+include ApplicationHelper
 class HomeController < ApplicationController
 
 

@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
   get '/register', to: 'users#new'
   post '/register',  to: 'users#create'
-  get '/create', to: 'games#create'
+  get '/create', to: 'games#new'
+  post '/create', to: 'games#create'
   get '/delete', to: 'games#delete'
   get '/settings', to: 'users#update'
 

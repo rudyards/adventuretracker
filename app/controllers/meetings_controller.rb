@@ -1,2 +1,3 @@
+include ApplicationHelper
 class MeetingsController < ApplicationController
 end

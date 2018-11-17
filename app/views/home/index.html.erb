@@ -2,4 +2,9 @@
 
 <h1>AdventureTracker</h1>
 <p>Welcome to AdventureTracker!</p>
-<p>Here's a list of the RPGs that you're in:</p>
+<p>Here's a list of the RPGs that you're running:</p>
+<ul>
+<% Game.where(gm_id: 1).each do |thisgame| %>
+    <li><%= thisgame.name %>    <%= thisgame.description %></li>
+<% end %>
+</ul>
