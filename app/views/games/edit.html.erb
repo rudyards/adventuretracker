@@ -1,0 +1,24 @@
+<% provide(:title, 'Update RPG') %>
+<h1>Update RPG</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+     <%= form_for(@game) do |f| %>
+        <%= render 'error_messages' %>
+         <%= f.label :name %>
+         <%= f.text_field :name, class: 'form-control' %>
+         <br>
+         <%= f.label :description %>
+         <%= f.text_field :description, class: 'form-control' %>
+         
+          <br>
+         <%= f.submit "Update Game", class: "btn btn-primary" %>
+         
+     <% end %>
+     <%= form_for(@game, url:confirm_game_path(@game), method: :get) do |f| %>
+        <br>
+        <br>
+        <%= f.submit "Delete Game", class: "btn btn-primary" %>
+     <% end %>
+  </div>
+</div>

@@ -33,13 +33,5 @@ module ApplicationHelper
     end    
 
 
-    def simpleHash(id)
-
-    end
-
-    def simpleDehash(hash)
-
-    end
-
 
 end

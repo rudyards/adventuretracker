@@ -18,5 +18,9 @@ Rails.application.routes.draw do
 
   resources :meetings
 
+  resources :memberships
+
+  resources :requests
+
   
 end
