@@ -32,4 +32,14 @@ module ApplicationHelper
         end
     end    
 
+
+    def simpleHash(id)
+
+    end
+
+    def simpleDehash(hash)
+
+    end
+
+
 end

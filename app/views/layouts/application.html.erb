@@ -28,17 +28,17 @@
                     <ul class="navbar-nav mr-auto mt-2">
                             <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                             <% if logged_in? %>
-                            <li class="nav-item"><a class="nav-link" href="/create">Create Game</a></li>
+                            <li class="nav-item"><a class="nav-link" href=<%= new_game_url %>>Create Game</a></li>
                             <% end %>
                     </ul>
                    <% if logged_in? %>
                    <ul class="navbar-nav ml-auto mt-2">
                         <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
-                        <li class="nav-tem"><a class="nav-link" href="/settings">Settings</a></li>
+                        <li class="nav-tem"><a class="nav-link" href=<%= edit_user_url(current_user.id) %>>Settings</a></li>
                     </ul>
                     <% else %>
                     <ul class="navbar-nav ml-auto mt-2">
-                        <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href=<%= new_user_url %>>Register</a></li>
                         <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
                     </ul>
                     <% end %>
@@ -47,6 +47,7 @@
       </div>
     </header>
     <div class="container">
+      <br>
       <%= yield %>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

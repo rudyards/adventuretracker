@@ -5,7 +5,7 @@
 <p>Here's a list of the RPGs that you're running:</p>
 <table style="width:100%">
     <tr><th>RPG Name</th><th>Description</th></tr>
-    <% Game.where(gm_id: 1).each do |thisgame| %>
+    <% Game.where(gm_id: session[:user_id]).each do |thisgame| %>
         <tr>
         <td><a href=/games/<%= thisgame.id %>><%= thisgame.name %></a></td>
         <td><%= thisgame.description %></td>

@@ -23,6 +23,10 @@ class GamesController < ApplicationController
         @game = Game.find(params[:id])
     end
 
+    def confirm
+        @game = Game.find(params[:id])
+    end
+
     def destroy
         Game.find(params[:id]).destroy
         flash[:success] = "Game deleted"

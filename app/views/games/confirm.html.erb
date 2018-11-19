@@ -1,0 +1,7 @@
+ <% provide(:title, 'Delete RPG') %>
+<h1>Delete RPG</h1>
+ <%= form_for(@game, url: game_path(@game.id), method: :delete) do |f| %>
+    Are you sure? Final confirmation before deletion.
+    <br>
+    <%= f.submit "Delete Game", class: "btn btn-primary" %>
+ <% end %>
