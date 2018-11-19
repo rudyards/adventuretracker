@@ -3,8 +3,13 @@
 <h1>AdventureTracker</h1>
 <p>Welcome to AdventureTracker!</p>
 <p>Here's a list of the RPGs that you're running:</p>
-<ul>
-<% Game.where(gm_id: 1).each do |thisgame| %>
-    <li><%= thisgame.name %>    <%= thisgame.description %></li>
-<% end %>
-</ul>
+<table style="width:100%">
+    <tr><th>RPG Name</th><th>Description</th></tr>
+    <% Game.where(gm_id: 1).each do |thisgame| %>
+        <tr>
+        <td><a href=/games/<%= thisgame.id %>><%= thisgame.name %></a></td>
+        <td><%= thisgame.description %></td>
+        <td><a href=/games/<%= thisgame.id %>/edit>Edit</a>  |  New Meeting   |  Invite</td>
+        </tr>
+    <% end %>
+</table>
