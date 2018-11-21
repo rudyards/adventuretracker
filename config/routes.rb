@@ -4,10 +4,14 @@ Rails.application.routes.draw do
 
   resources :users
 
-  # post '/create', to: 'games#create'
-  get '/games/:id/confirm', to: 'games#confirm', as: :confirm_game
-  get '/games/new',      to: 'games#new',  as: :new_game
-  post '/games/create',  to: 'games#create', as: :create_game
+  get '/games/:id/confirm',       to: 'games#confirm',     as: :confirm_game
+  get '/games/new',               to: 'games#new',         as: :new_game
+  post '/games/create',           to: 'games#create',      as: :create_game
+  post '/games/:id/join',         to: 'games#knock',       as: :join_game
+  post '/games/accept/:knockid',  to: 'games#knockaccept', as: :knock_accept_game
+  post '/games/reject/:knockid',  to: 'games#knockreject', as: :knock_reject_game
+  post '/games/:id/leave',        to: 'games#leave',       as: :leave_game
+  post '/games/:id/kick/:userid', to: 'games#kick',        as: :kick_game
   resources :games
   
   get '/login', to: 'sessions#new'
@@ -15,12 +19,12 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
 
-
+  get '/meetings/new/:gameid',    to: 'meetings#new',       as: :new_meeting
   resources :meetings
 
   resources :memberships
 
-  resources :requests
+  resources :knocks
 
   
 end

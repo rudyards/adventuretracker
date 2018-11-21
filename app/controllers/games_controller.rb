@@ -29,7 +29,10 @@ class GamesController < ApplicationController
     end
 
     def show
-        @game = Game.find(params[:id])
+        @game = Game.find(params[:id])        
+        @gm = (@game.gm_id == current_user.id)
+        @member = @game.users.where(id: current_user.id).first
+        @knocked = @game.knocks.where(user_id: current_user.id).first
     end
 
     def confirm
@@ -37,10 +40,45 @@ class GamesController < ApplicationController
     end
 
     def destroy
-        Game.find(params[:id]).destroy
-        flash[:success] = "Game deleted"
-        redirect_to '/'
+        @game = Game.find(params[:id])
+
+        if (@game.gm_id == current_user.id)
+          Game.find(params[:id]).destroy
+          flash[:success] = "Game deleted"
+          redirect_to '/'
+        else
+          flash[:error] = "You don't have permission to do that"
+          redirect_to '/'
+        end
     end
+
+    def leave
+        game = Game.find(params[:id])
+        member = @game.memberships.where(user_id: current_user.id).first
+        if member
+          member.destroy
+          flash[:success] = "You left the game"
+          redirect_to '/'
+        else
+          flash[:error] = "You don't have permission to do that"
+          redirect_to '/'
+        end 
+    end
+
+    def kick
+      game = Game.find(params[:id])
+      user = User.find(params[:userid])
+      member = game.memberships.where(user_id: user.id).first
+      if member && (game.gm_id == current_user.id)
+        member.destroy
+        flash[:success] = "You've removed them from the game"
+        redirect_to game
+      else
+        flash[:error] = "You can't do that"
+        redirect_to game
+      end
+    end
+
 
     def edit
         @game = Game.find(params[:id])
@@ -48,14 +86,65 @@ class GamesController < ApplicationController
 
     def update
         @game = Game.find(params[:id])
-        if @game.update_attributes(game_params)
-          flash[:success] = "Profile updated"
-          redirect_to '/'
+        if (@game.gm_id == current_user.id)
+          if @game.update_attributes(game_params)
+            flash[:success] = "Profile updated"
+            redirect_to '/'
+          else
+            render 'edit'
+          end
         else
-          render 'edit'
+          flash[:error] = "You don't have permission to do that"
+          redirect_to '/'
         end
     end
 
+    def knock
+        @game = Game.find(params[:id])    
+        @knock = Knock.new(user_id: current_user.id, game_id: @game.id)   
+        if @knock.save
+          flash[:success] = "You've requested to join the game"
+          redirect_to '/'
+        else
+          flash[:success] = "Request failed"
+          redirect_to '/'
+        end
+    end
+
+    def knockaccept
+      knock = Knock.find(params[:knockid])
+      thisgame = knock.game
+      if knock.nil?
+          flash[:error] = "Can't find that request"
+          redirect_to '/'
+      else
+        if knock.game.gm_id != current_user.id
+          flash[:error] = "You don't have permission to do that"
+          redirect_to '/'
+        else
+          knock.game.memberships.create(user_id: knock.user_id)
+          knock.destroy
+          redirect_to thisgame
+        end
+      end
+    end
+
+    def knockreject
+      knock = Knock.find(params[:knockid])
+      thisgame = knock.game
+      if knock.nil?
+          flash[:error] = "Can't find that request"
+          redirect_to '/'
+      else
+        if knock.game.gm_id != current_user.id
+          flash[:error] = "You don't have permission to do that"
+          redirect_to '/'
+        else
+          knock.destroy
+          redirect_to this
+        end
+      end
+    end
 
     private
 

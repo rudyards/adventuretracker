@@ -27,6 +27,10 @@ input {
   height: auto !important;
 }
 
+input[type=submit] {
+  width: 33%;
+}
+
 #error_explanation {
   color: red;
   ul {
@@ -41,3 +45,4 @@ input {
     color: $state-danger-text;
   }
 }
+

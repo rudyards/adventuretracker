@@ -19,8 +19,25 @@ class UsersController < ApplicationController
     end
 
     def edit
+      @user = User.find(params[:id])
+    end
+
+    def update
+      @user = User.find(params[:id])
+      if (@user.id != current_user.id)
+          flash[:error] = "You don't have permission to do that"
+          redirect_to '/'
+      else 
+        if @user.update_attributes(user_params)
+          flash[:success] = "Profile updated"
+          redirect_to '/'
+        else
+          render 'edit'
+        end
+      end
 
     end
+
     
     private
 

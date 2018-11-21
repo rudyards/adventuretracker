@@ -1,4 +1,4 @@
-class Request < ApplicationRecord
+class Knock < ApplicationRecord
     belongs_to :game
     belongs_to :user
 end
