@@ -67,3 +67,4 @@ end
 
 gem 'bootstrap'
 gem 'jquery-rails'
+# Trying with heroku-18
