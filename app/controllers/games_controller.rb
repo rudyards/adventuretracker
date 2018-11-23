@@ -33,6 +33,8 @@ class GamesController < ApplicationController
         @gm = (@game.gm_id == current_user.id)
         @member = @game.users.where(id: current_user.id).first
         @knocked = @game.knocks.where(user_id: current_user.id).first
+        @upcoming = @game.meetings.first
+        @meetings = @game.meetings
     end
 
     def confirm

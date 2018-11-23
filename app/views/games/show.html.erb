@@ -39,6 +39,19 @@ Current Players:
     <br>
 <% end %>
 
+<% if @upcoming %>
+    Upcoming Meetings:
+    <table style="width:75%">
+    <% @meetings.each do |meeting| %>
+    <tr> <td> Location: <%= meeting.place %>  </td>
+         <td> At: <%= meeting.time.strftime("%I:%M%p, %B %e, %Y") %> </td>
+         <td> For <%= meeting.duration %> hours</td>
+    </tr>
+    <% end %>
+<% else %>
+    No meetings currently scheduled for this game.
+<% end %>
+
 <% if !@gm && @member %>
     <%= form_for(@game, url:leave_game_path(@game), method: :post) do |f| %>
         <%= f.submit "Leave Game", class: "btn btn-primary" %>
