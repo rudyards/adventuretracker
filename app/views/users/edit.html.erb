@@ -16,8 +16,11 @@
          <br>
          <%= f.label :password_confirmation %>
          <%= f.password_field :password_confirmation, class: 'form-control' %>
-         
-          <br>
+         <br>
+         <%= f.label :timezone %>
+         <%= f.time_zone_select :timezone %>
+         <br>
+         <br>
          <%= f.submit "Update Settings", class: "btn btn-primary" %>
      <% end %>
   </div>
