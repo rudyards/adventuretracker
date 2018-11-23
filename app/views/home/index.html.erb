@@ -11,7 +11,8 @@
                 <tr>
                 <td><a href=/games/<%= game.id %>><%= game.name %></a></td>
                 <td><%= game.description %></td>
-                <td><a href=/games/<%= game.id %>/edit>Edit</a> | <%= link_to("New Meeting", new_meeting_path(game.id)) %> </td>
+                <td><a href=/games/<%= game.id %>/edit>Edit</a> 
+                    | <%= link_to("New Meeting", new_meeting_path(game.id)) %></td>
                 </tr>
             <% end %>
         </table>
