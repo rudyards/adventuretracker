@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
 
-  get '/meetings/new/:gameid',    to: 'meetings#new',       as: :new_meeting
+  get '/meetings/new/:game_id',    to: 'meetings#new',       as: :new_meeting
   resources :meetings
 
   resources :memberships

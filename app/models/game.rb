@@ -1,5 +1,6 @@
 class Game < ApplicationRecord
     has_many :memberships, -> { order(:created_at)}, :dependent => :destroy
+    has_many :meetings
     has_many :knocks, -> { order(:created_at)}, :dependent => :destroy
     has_many :users, through: :memberships
     

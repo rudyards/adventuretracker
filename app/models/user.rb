@@ -2,6 +2,7 @@ class User < ApplicationRecord
     attr_accessor :remember_token
 
     has_many :memberships
+    has_many :meetings, through: :games
     has_many :games, through: :memberships
 
     before_save { self.email = email.downcase }
