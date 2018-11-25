@@ -1,0 +1,25 @@
+<% provide(:title, 'Update Meeting') %>
+<h1>Update Meeting</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+     <%= form_for(@meeting) do |f| %>
+        <%= render 'error_messages' %>
+            <%= f.label :time %>
+            <%= f.datetime_select :time, class: 'form-control' %>
+            <br>
+            <%= f.label :duration %>
+            <%= f.select :duration, (0.5...7.5).step(0.5), class: 'form-control' %> Hours
+            <br>
+            <%= f.label :place %>
+            <%= f.text_field :place, class: 'form-control' %>         
+            <br>
+            <%= f.submit "Update Game", class: "btn btn-primary" %>
+     <% end %>
+     <%= form_for(@meeting, url:meeting_path(@meeting), method: :delete) do |f| %>
+        <br>
+        <br>
+        <%= f.submit "Delete Game", class: "btn btn-primary" %>
+     <% end %>
+  </div>
+</div>

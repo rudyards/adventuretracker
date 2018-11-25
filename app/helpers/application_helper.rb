@@ -30,8 +30,11 @@ module ApplicationHelper
         unless logged_in?
             redirect_to login_url, notice: "Please sign in."
         end
-    end    
+    end
 
+    def pretty_time(thistime)    
+        return thistime.strftime("%I:%M%p, %B %e, %Y")
+    end
 
 
 end
