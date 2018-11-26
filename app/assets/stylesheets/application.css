@@ -48,9 +48,3 @@ input[type=submit] {
     color: $state-danger-text;
   }
 }
-
-.datetime {
-  width: 20%;
-  
-}
-

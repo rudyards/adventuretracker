@@ -8,6 +8,9 @@ class MeetingsController < ApplicationController
 
     def create
         @meeting = Meeting.new(meeting_params)
+        puts "This is the time "
+        Time.zone = @meeting.game.timezone
+        @meeting.time = Time.zone.parse(@meeting.time.to_s)
         if (@meeting.game.gm_id == current_user.id)
             if params[:check]
                 @proposed_time = pretty_time(@meeting.time)

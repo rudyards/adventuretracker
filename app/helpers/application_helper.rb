@@ -33,7 +33,7 @@ module ApplicationHelper
     end
 
     def pretty_time(thistime)    
-        return thistime.strftime("%I:%M%p, %B %e, %Y")
+        return thistime.strftime("%I:%M %p, %B %e, %Y")
     end
 
 

@@ -44,7 +44,7 @@ Current Players:
     <table style="width:75%">
     <% @meetings.each do |meeting| %>
     <tr> <td> Location: <%= meeting.place %>  </td>
-         <td> At: <%= pretty_time(meeting.time) %> </td>
+         <td> At: <%= pretty_time(meeting.time.in_time_zone(current_user.timezone)) %> </td>
          <td> For <%= meeting.duration %> hours</td>
          <td> <% if @gm %> <%= link_to("Edit", edit_meeting_path(meeting.id)) %> <% end %> </td>
     </tr>

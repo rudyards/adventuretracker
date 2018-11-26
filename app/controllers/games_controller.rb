@@ -11,7 +11,7 @@ class GamesController < ApplicationController
     def create
         @game = Game.new(game_params)
         @game.gm_id = current_user.id
-
+        @game.timezone = current_user.timezone
 
         if @game.save
           @membership = Membership.new(user_id: current_user.id, game_id: @game.id)
@@ -35,6 +35,9 @@ class GamesController < ApplicationController
         @knocked = @game.knocks.where(user_id: current_user.id).first
         @upcoming = @game.meetings.first
         @meetings = @game.meetings
+        @meetings.each do |meeting|
+          meeting.time.in_time_zone(current_user.timezone)
+        end
     end
 
     def confirm
@@ -151,7 +154,7 @@ class GamesController < ApplicationController
     private
 
         def game_params
-          params.require(:game).permit(:name, :description, :gm_id)
+          params.require(:game).permit(:name, :description, :gm_id, :timezone)
         end
 
 end
