@@ -1,26 +1,27 @@
 <% provide(:title, 'Schedule a Meeting') %>
 <h1>Schedule a Meeting</h1>
-<br>
 This is where you schedule meetings
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-     <%= form_for(@meeting) do |f| %>
+     <%= bootstrap_form_for(@meeting) do |f| %>
         <%= render 'error_messages' %>
         <%= f.hidden_field :game_id %>
         <div class="datetime">
-            <%= f.label :time %>
             <%= f.datetime_select :time, class: 'form-control' %>
         </div>
         <br>
         <div class="datetime">
-        <%= f.label :duration %>
-        <%= f.select :duration, (0.5...7.5).step(0.5), class: 'form-control' %> Hours
+        <%= f.select :duration, (0.5...7.5).step(0.5), class: 'form-control', label: "Duration (Hours)" %>
         </div>
         <br>
-        <%= f.label :place %>
         <%= f.text_field :place, class: 'form-control' %>
+        <% if @proposed_time %>
+            <%= @proposed_time %>
+            <br>
+        <% end %>
         <br>
+        <%= f.submit "Check Timing", class: "btn btn-primary", name: "check" %>
         <%= f.submit "Schedule Meeting", class: "btn btn-primary" %>
 
      <% end %>

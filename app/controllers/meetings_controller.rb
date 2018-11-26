@@ -9,11 +9,16 @@ class MeetingsController < ApplicationController
     def create
         @meeting = Meeting.new(meeting_params)
         if (@meeting.game.gm_id == current_user.id)
-            if @meeting.save
-                flash[:success] = "Added new meeting to this game"
-                redirect_to '/'
-            else
+            if params[:check]
+                @proposed_time = pretty_time(@meeting.time)
                 render 'new'
+            else 
+                if @meeting.save
+                    flash[:success] = "Added new meeting to this game"
+                    redirect_to '/'
+                else
+                    render 'new'
+                end
             end
         else
             flash[:error] = "You don't have permission to do that."
@@ -28,15 +33,20 @@ class MeetingsController < ApplicationController
         @meeting = Meeting.find(params[:id])
         if (@meeting.game.gm_id == current_user.id)
             if @meeting.update_attributes(meeting_params)
-                flash[:success] = ""
-                redirect_to '/'
+                if params[:check]
+                    @proposed_time = pretty_time(@meeting.time)
+                    render 'edit'
+                else
+                    flash[:success] = "Meeting edited"
+                    redirect_to '/'
+                end
             else
                 render 'edit'
             end
         else
             flash[:error] = "You don't have permission to do that"
             redirect_to '/'
-        end
+        end     
     end
 
     def destroy

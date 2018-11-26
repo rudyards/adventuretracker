@@ -7,6 +7,7 @@ ruby '2.5.0'
 gem 'rails', '~> 5.2.1'
 gem 'bcrypt', '3.1.12'
 gem 'bootstrap-sass', '3.3.7'
+gem "bootstrap_form", "~> 2.7"
 # Use postgres as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
