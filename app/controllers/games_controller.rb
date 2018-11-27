@@ -34,7 +34,7 @@ class GamesController < ApplicationController
         @member = @game.users.where(id: current_user.id).first
         @knocked = @game.knocks.where(user_id: current_user.id).first
         @upcoming = @game.meetings.first
-        @meetings = @game.meetings
+        @meetings = @game.meetings.future
         @meetings.each do |meeting|
           meeting.time.in_time_zone(current_user.timezone)
         end
