@@ -6,15 +6,27 @@
      <%= bootstrap_form_for(@meeting) do |f| %>
         <%= render 'error_messages' %>
             <%= f.datetime_select :time, class: 'form-control' %>
+            In Timezone: <%= @meeting.game.timezone %>
             <%= f.select :duration, (0.5...7.5).step(0.5), class: 'form-control', label: "Duration (Hours)" %> 
             <%= f.text_field :place, class: 'form-control' %>         
             <br>
-            <% if @proposed_time %>
-                <%= @proposed_time %>
-                <br>
-                <br>
-            <% end %>
-
+            <table>
+                <tr>
+                  <% @meeting.game.users.each  do |user| %>
+                      <td><%= user.username %></td>
+                  <% end %>
+                </tr>
+                <% if @proposed_time %>
+                  <% p_time = @proposed_time.in_time_zone(@meeting.game.timezone) %>
+                  <tr>
+                  <% @meeting.game.users.each  do |user| %>
+                      <% playerTime = p_time.in_time_zone(user.timezone) %>
+                      <td><%= pretty_time(playerTime) %></td>
+                  <% end %>
+                  </tr>
+                <% end %>
+            </table>
+            <br>
             <%= f.submit "Check Timing", class: "btn btn-primary", name: "check" %>
             <%= f.submit "Update Game", class: "btn btn-primary" %>
      <% end %>
@@ -24,5 +36,5 @@
         <%= f.submit "Delete Game", class: "btn btn-primary" %>
      <% end %>
   </div>
-
+ 
 </div>

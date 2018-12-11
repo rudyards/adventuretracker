@@ -19,6 +19,16 @@ This is where you schedule meetings
             <br>
         <% end %>
         <br>
+        <table style="width:100%">
+            <tr>
+            <% @game.users.each  do |user| %>
+                <td><%= user.username %></td>
+            <% end %>
+            </tr>
+
+            </tr>
+        </table>
+        <br>
         <%= f.submit "Check Timing", class: "btn btn-primary", name: "check" %>
         <%= f.submit "Schedule Meeting", class: "btn btn-primary" %>
 
