@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'password_resets/new'
+  get 'password_resets/edit'
   root 'home#index'
   get '/', to: 'home#index'
   get '/about', to:'about#show'
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
+  resources :password_resets,     only: [:new, :create, :edit, :update]
 
 
   get '/meetings/new/:game_id',    to: 'meetings#new',       as: :new_meeting
@@ -26,6 +29,8 @@ Rails.application.routes.draw do
   resources :memberships
 
   resources :knocks
+
+
 
   
 end
