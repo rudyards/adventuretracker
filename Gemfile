@@ -12,15 +12,13 @@ gem 'bcrypt', '3.1.12'
 gem 'sass-rails', '~> 5.0'
 
 gem "bootstrap_form", "~> 2.7"
+gem "bootstrap-sass"
 
 # Use postgres as the database for Active Record
 gem 'pg'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
-
-# Use SCSS for stylesheets
-# gem 'sass-rails', '~> 5.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
