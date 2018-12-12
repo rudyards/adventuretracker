@@ -9,10 +9,9 @@ gem 'rails', '~> 5.2.1'
 gem 'bcrypt', '3.1.12'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-
-gem "bootstrap_form", "~> 2.7"
-gem "bootstrap-sass"
+gem 'sassc-rails'
+gem 'bootstrap'
+gem "bootstrap_form", ">= 4.0.0"
 
 # Use postgres as the database for Active Record
 gem 'pg'
