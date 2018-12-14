@@ -10,7 +10,7 @@ gem 'bcrypt', '3.1.12'
 
 # Use SCSS for stylesheets
 gem 'sassc-rails'
-gem 'bootstrap'
+gem 'bootstrap', '~> 4.1.3'
 gem "bootstrap_form", ">= 4.0.0"
 
 # Use postgres as the database for Active Record
@@ -62,7 +62,5 @@ end
 # Fortunately, we are not on windows
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-
-gem 'bootstrap'
 gem 'jquery-rails'
 # Trying with heroku-18
