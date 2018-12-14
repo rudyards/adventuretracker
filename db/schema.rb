@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2018_12_13_175938) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "remember_digest"
-    t.string "timezone", default: "PST"
+    t.string "timezone", default: "UTC"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
     t.index ["email"], name: "index_users_on_email", unique: true
