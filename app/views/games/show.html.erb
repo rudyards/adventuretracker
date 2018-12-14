@@ -53,6 +53,31 @@ Current Players:
     No meetings currently scheduled for this game.
 <% end %>
 
+<% if @member %>
+<br>
+<br>
+<br>
+<h1>Announcements</h1>
+<ul>
+    <% @game.comments.each do |comment| %>
+        <% if comment.id %>
+            <li>
+                <%= comment.text %>
+            </li>
+        <% end %>    
+    <% end %>
+    </ul>
+<br>
+<br>
+    <% if @gm %>
+        <%= bootstrap_form_for(@comment, url: comment_game_path(@game), method: :post) do |f| %>
+            <%= f.text_area :text, class: 'form-control' %>
+
+            <%= f.submit "Save Comment", class: "btn btn-primary" %>
+        <% end %>
+    <% end %>
+<% end %>
+
 <% if !@gm && @member %>
     <%= form_for(@game, url:leave_game_path(@game), method: :post) do |f| %>
         <%= f.submit "Leave Game", class: "btn btn-primary" %>

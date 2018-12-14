@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post '/games/reject/:knockid',  to: 'games#knockreject', as: :knock_reject_game
   post '/games/:id/leave',        to: 'games#leave',       as: :leave_game
   post '/games/:id/kick/:userid', to: 'games#kick',        as: :kick_game
+  post '/games/:id/comment/',     to: 'games#comment',     as: :comment_game
   resources :games
   
   get '/login', to: 'sessions#new'

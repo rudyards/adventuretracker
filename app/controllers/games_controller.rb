@@ -31,6 +31,7 @@ class GamesController < ApplicationController
     def show
         @game = Game.find(params[:id])        
         @gm = (@game.gm_id == current_user.id)
+        @comment = @game.comments.new
         @member = @game.users.where(id: current_user.id).first
         @knocked = @game.knocks.where(user_id: current_user.id).first
         @upcoming = @game.meetings.first
@@ -84,9 +85,24 @@ class GamesController < ApplicationController
       end
     end
 
+    def comment
+      @game = Game.find(params[:id])
+      @comment = @game.comments.new(comment_params)
+      if (@game.gm_id == current_user.id)
+        if @comment.save
+          flash[:success] = "Comment has been saved"
+          redirect_to @game
+        else
+          redirect_to @game
+        end
+      else
+        flash[:error] = "You don't have permission to do that"
+        redirect_to '/'
+      end
+    end
 
     def edit
-        @game = Game.find(params[:id])
+      @game = Game.find(params[:id])
     end
 
     def update
@@ -151,10 +167,16 @@ class GamesController < ApplicationController
       end
     end
 
+    
+
     private
 
         def game_params
-          params.require(:game).permit(:name, :description, :gm_id, :timezone)
+          params.require(:game).permit(:name, :description, :timezone)
+        end
+
+        def comment_params
+          params.require(:comment).permit(:text)
         end
 
 end
