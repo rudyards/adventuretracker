@@ -33,7 +33,6 @@ Current Players:
                 </tr>
             <% end %>
         </table>
-    <br>
     Invite people to join this game by sending them the link currently in the address bar, then approve them once they've applied.
     <br>
     <br>
@@ -49,33 +48,32 @@ Current Players:
          <td> <% if @gm %> <%= link_to("Edit", edit_meeting_path(meeting.id)) %> <% end %> </td>
     </tr>
     <% end %>
+    </table>
 <% else %>
     No meetings currently scheduled for this game.
 <% end %>
 
 <% if @member %>
-<br>
-<br>
-<br>
-<h1>Announcements</h1>
-<ul>
-    <% @game.comments.each do |comment| %>
-        <% if comment.id %>
-            <li>
-                <%= comment.text %>
-            </li>
-        <% end %>    
-    <% end %>
-    </ul>
-<br>
-<br>
-    <% if @gm %>
-        <%= bootstrap_form_for(@comment, url: comment_game_path(@game), method: :post) do |f| %>
-            <%= f.text_area :text, class: 'form-control' %>
-
-            <%= f.submit "Save Comment", class: "btn btn-primary" %>
+    <br>
+    <h3>Announcements</h3>
+    <ul>
+        <% @game.comments.each do |comment| %>
+            <% if comment.id %>
+                <li>
+                    <%= comment.text %>
+                </li>
+            <% end %>    
         <% end %>
-    <% end %>
+        </ul>
+    <br>
+    <br>
+        <% if @gm %>
+            <%= bootstrap_form_for(@comment, url: comment_game_path(@game), method: :post) do |f| %>
+                <%= f.text_area :text, class: 'form-control' %>
+
+                <%= f.submit "Save Comment", class: "btn btn-primary" %>
+            <% end %>
+        <% end %>
 <% end %>
 
 <% if !@gm && @member %>

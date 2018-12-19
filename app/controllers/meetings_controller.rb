@@ -14,6 +14,7 @@ class MeetingsController < ApplicationController
         if (@meeting.game.gm_id == current_user.id)
             if params[:check]
                 @proposed_time = pretty_time(@meeting.time)
+                @game = @meeting.game
                 render 'new'
             else 
                 if @meeting.save
@@ -38,6 +39,7 @@ class MeetingsController < ApplicationController
             if @meeting.update_attributes(meeting_params)
                 if params[:check]
                     @proposed_time = pretty_time(@meeting.time)
+                    @game = @meeting.game
                     render 'edit'
                 else
                     flash[:success] = "Meeting edited"
