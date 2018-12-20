@@ -1,6 +1,9 @@
 <% provide(:title,"Home") %>
-
 <h1>AdventureTracker</h1>
+<div class="alert alert-success alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> 
+    Link Copied
+</div>
 <p>Welcome to AdventureTracker!</p>
 <% unless @loggedout %>
     <p>Here's a list of the RPGs that you're running:</p>
@@ -8,11 +11,13 @@
         <table style="width:100%">
             <tr><th>RPG Name</th><th>Description</th></tr>
             <% @dming.each do |game| %>
+                <p id="invitelink<%= game.id %>" hidden=true>https://adventuretracker.herokuapp.com/games/<%= game.id %></p>
                 <tr>
                 <td><a href=/games/<%= game.id %>><%= game.name %></a></td>
                 <td><%= game.description %></td>
                 <td><a href=/games/<%= game.id %>/edit>Edit</a> 
-                    | <%= link_to("New Meeting", new_meeting_path(game.id)) %></td>
+                    | <%= link_to("New Meeting", new_meeting_path(game.id)) %>
+                    | <a href="#" onclick="copyToClipboard('#invitelink<%= game.id %>')">Copy Invite Link</a> </td>
                 </tr>
             <% end %>
         </table>
@@ -36,3 +41,13 @@
     &emsp;  You are not currently in any games.
     <% end %>
 <% end %>
+<script type="text/javascript">
+    function copyToClipboard(element) {
+      $(".alert").hide().show('medium');
+      var $temp = $("<input>");
+      $("body").append($temp);
+      $temp.val($(element).text()).select();
+      document.execCommand("copy");
+      $temp.remove();
+    }
+</script>
