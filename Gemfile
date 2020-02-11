@@ -10,7 +10,7 @@ gem 'bcrypt', '3.1.12'
 
 # Use SCSS for stylesheets
 gem 'sassc-rails'
-gem 'bootstrap', '~> 4.1.3'
+gem 'bootstrap', '~> 4.3.1'
 gem "bootstrap_form", ">= 4.0.0"
 
 # Use postgres as the database for Active Record
